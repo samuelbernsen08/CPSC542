@@ -10,7 +10,7 @@ import tensorflow as tf
 from sklearn.preprocessing import LabelBinarizer
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.layers.experimental import preprocessing
-
+import image_tester
 
 def model_creator(batch_size = 32, image_width = 224, image_height = 224, epochs = 10, directory = "./CarBodyStyles"):
 
@@ -67,6 +67,9 @@ def model_creator(batch_size = 32, image_width = 224, image_height = 224, epochs
     initial_epoch = 0
     )
 
+    # 3 best 3 worst:
+    image_tester.three_best_three_worst(custom_ff, val_ds)
+    
     #custom_ff.summary()
     custom_ff.save("./model_directory")
     return history
